@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { GlobalContext } from "../context/context";
 
@@ -63,7 +63,7 @@ const Result = () => {
       return "red";
     }
   };
-  
+
   return (
     <ResultContainer>
       <ResultItem>

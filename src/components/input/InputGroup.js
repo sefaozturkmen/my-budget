@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import ReactDatePicker from "react-datepicker";
 import styled from "styled-components";
 import { GlobalContext } from "../../context/context";
