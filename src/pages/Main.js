@@ -2,7 +2,7 @@ import React from "react";
 import { Col, Row, Container } from "react-bootstrap";
 
 import BudgetOperations from "../components/BudgetOperations";
-import Results from "../components/Results";
+import BudgetExpenses from "../components/BudgetExpenses";
 
 const Main = () => {
   return (
@@ -12,7 +12,7 @@ const Main = () => {
           <BudgetOperations />
         </Col>
         <Col sm={6} className="p-0 m-0">
-          <Results />
+          <BudgetExpenses />
         </Col>
       </Row>
     </Container>

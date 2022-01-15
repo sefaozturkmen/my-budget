@@ -8,7 +8,8 @@ const Box = styled.div`
   background-color: #282a37;
   color: #fff;
   width: 100%;
-  padding: 200px 80px;
+  padding: 150px 80px 0;
+  height: 85vh;
   h4 {
     font-size: 32px;
     margin-bottom: 24px;
