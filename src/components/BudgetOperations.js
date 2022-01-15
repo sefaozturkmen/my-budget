@@ -1,7 +1,9 @@
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
+import { GlobalContext } from "../context/context";
+
 import InputGroup from "./input/InputGroup";
 
 const Box = styled.div`
@@ -9,7 +11,7 @@ const Box = styled.div`
   color: #fff;
   width: 100%;
   padding: 150px 80px 0;
-  height: 85vh;
+  height: 80vh;
   h4 {
     font-size: 32px;
     margin-bottom: 24px;
@@ -31,17 +33,53 @@ const AddButton = styled.button`
   cursor: pointer;
 `;
 const BudgetOperations = () => {
+  const {
+    expenseList,
+    setExpenseList,
+    selectedDate,
+    expense,
+    amount,
+    startDate,
+    income,
+  } = useContext(GlobalContext);
+
+  //get value from form
+  const formSubmit = () => {
+    //return if income has no value
+    if (income === 0 || income === "") {
+      return alert("please enter a budget value");
+    }
+
+    //return if no value
+    if (
+      expense === null ||
+      expense === "" ||
+      amount === null ||
+      amount === ""
+    ) {
+      return alert("formu doldur");
+    }
+
+    //set output to expenseList
+    let output = {
+      expense,
+      amount,
+      selectedDate: selectedDate ? selectedDate : startDate,
+    };
+    setExpenseList([...expenseList, output]);
+  };
+
   return (
     <Box>
       <h4>Simplified Budget</h4>
       <BudgetContainer>
-        <InputGroup labelText="Budget Amount" />
+        <InputGroup labelText="Budget Amount" incomeInput />
       </BudgetContainer>
       <ExpenseContainer>
-        <InputGroup labelText="Expense" light />
-        <InputGroup labelText="Amount" />
-        <InputGroup labelText="Date" />
-        <AddButton>
+        <InputGroup labelText="expense" expense />
+        <InputGroup labelText="amount" />
+        <InputGroup labelText="date" date />
+        <AddButton onClick={formSubmit}>
           <FontAwesomeIcon icon={faPlus} color="#51F129" size="2x" />
         </AddButton>
       </ExpenseContainer>

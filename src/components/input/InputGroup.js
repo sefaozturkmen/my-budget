@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import ReactDatePicker from "react-datepicker";
 import styled from "styled-components";
+import { GlobalContext } from "../../context/context";
+import "react-datepicker/dist/react-datepicker.css";
 
 const InputContainer = styled.div`
   display: flex;
@@ -7,7 +10,6 @@ const InputContainer = styled.div`
   background-color: #323645;
   padding: 8px 16px;
   border-radius: 12px;
-  height: 48px;
   transition: linear 0.2s;
   &:focus-within {
     background-color: #e8f0fe;
@@ -16,12 +18,22 @@ const InputContainer = styled.div`
     }
   }
   input {
-    background-color: transparent;
+    background-color: transparent !important;
     border: 0;
     outline: 0;
     height: 100%;
+    width: 100%;
     font-size: 16px;
     font-weight: 600;
+    color: #fff;
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    &[type="number"] {
+      -moz-appearance: textfield;
+    }
   }
   label {
     color: #8e909d;
@@ -29,11 +41,62 @@ const InputContainer = styled.div`
     font-weight: 500;
   }
 `;
-const InputGroup = ({ labelText }) => {
+const InputGroup = ({ labelText, incomeInput, date, expense }) => {
+  const {
+    setIncome,
+    setSelectedDate,
+    setExpense,
+    setAmount,
+    startDate,
+    setStartDate,
+  } = useContext(GlobalContext);
+
+  //update value when blur
+  const handleBlur = (event) => {
+    setIncome(event.target.value);
+  };
+
+  //set date from datepicker
+  const selectDate = (date) => {
+    // const formatDate = date.toLocaleDateString();
+    setStartDate(date);
+    setSelectedDate(date);
+  };
+
+  //set value by type from inputs
+  const changeValue = (e) => {
+    switch (labelText) {
+      case "expense":
+        setExpense(e.target.value);
+        break;
+      case "amount":
+        setAmount(Number(e.target.value));
+        break;
+      default:
+        break;
+    }
+  };
   return (
     <InputContainer>
       <label>{labelText}</label>
-      <input />
+      {!date ? (
+        <input
+          type={expense ? "text" : "number"}
+          onBlur={incomeInput && handleBlur}
+          name={labelText}
+          id={labelText}
+          onChange={changeValue}
+          required={true}
+        />
+      ) : (
+        <ReactDatePicker
+          dateFormat="dd/MM/yyyy"
+          selected={startDate}
+          name={labelText}
+          id={labelText}
+          onChange={(date) => selectDate(date)}
+        />
+      )}
     </InputContainer>
   );
 };
