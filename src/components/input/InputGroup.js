@@ -97,7 +97,7 @@ const InputGroup = ({ labelText, date, name, ...props }) => {
       <label>{labelText}</label>
       {!date ? (
         <input
-          type={props.expense ? "text" : "number"}
+          type={name === "expense" ? "text" : "number"}
           name={labelText}
           id={labelText}
           onChange={changeValue}
