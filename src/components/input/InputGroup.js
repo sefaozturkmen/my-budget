@@ -3,6 +3,7 @@ import ReactDatePicker from "react-datepicker";
 import styled from "styled-components";
 import { GlobalContext } from "../../context/context";
 import "react-datepicker/dist/react-datepicker.css";
+import { format } from "date-fns";
 
 const InputContainer = styled.div`
   display: flex;
@@ -59,8 +60,10 @@ const InputGroup = ({ labelText, incomeInput, date, expense }) => {
   //set date from datepicker
   const selectDate = (date) => {
     // const formatDate = date.toLocaleDateString();
+
+    const dateFormat = format(date, "dd/MM/yyyy");
     setStartDate(date);
-    setSelectedDate(date);
+    setSelectedDate(dateFormat);
   };
 
   //set value by type from inputs
