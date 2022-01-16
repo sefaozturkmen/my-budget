@@ -84,8 +84,10 @@ const InputGroup = ({ labelText, date, name, ...props }) => {
       case "expense":
         return expense;
       case "amount":
+        if (amount === 0) return;
         return amount;
       case "budgetAmount":
+        if (income === 0) return;
         return income;
       default:
         break;
