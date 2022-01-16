@@ -42,7 +42,7 @@ const InputContainer = styled.div`
     font-weight: 500;
   }
 `;
-const InputGroup = ({ labelText, incomeInput, date, expense }) => {
+const InputGroup = ({ labelText, date, name, ...props }) => {
   const {
     setIncome,
     setSelectedDate,
@@ -50,17 +50,13 @@ const InputGroup = ({ labelText, incomeInput, date, expense }) => {
     setAmount,
     startDate,
     setStartDate,
+    amount,
+    expense,
+    income,
   } = useContext(GlobalContext);
-
-  //update value when blur
-  const handleBlur = (event) => {
-    setIncome(event.target.value);
-  };
 
   //set date from datepicker
   const selectDate = (date) => {
-    // const formatDate = date.toLocaleDateString();
-
     const dateFormat = format(date, "dd/MM/yyyy");
     setStartDate(date);
     setSelectedDate(dateFormat);
@@ -68,28 +64,44 @@ const InputGroup = ({ labelText, incomeInput, date, expense }) => {
 
   //set value by type from inputs
   const changeValue = (e) => {
-    switch (labelText) {
+    switch (name) {
       case "expense":
         setExpense(e.target.value);
         break;
       case "amount":
         setAmount(Number(e.target.value));
         break;
+      case "budgetAmount":
+        setIncome(Number(e.target.value));
+        break;
       default:
         break;
     }
   };
+
+  const inputValue = () => {
+    switch (name) {
+      case "expense":
+        return expense;
+      case "amount":
+        return amount;
+      case "budgetAmount":
+        return income;
+      default:
+        break;
+    }
+  };
+
   return (
     <InputContainer>
       <label>{labelText}</label>
       {!date ? (
         <input
-          type={expense ? "text" : "number"}
-          onBlur={incomeInput && handleBlur}
+          type={props.expense ? "text" : "number"}
           name={labelText}
           id={labelText}
           onChange={changeValue}
-          required={true}
+          value={inputValue()}
         />
       ) : (
         <ReactDatePicker

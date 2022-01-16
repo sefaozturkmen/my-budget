@@ -1,5 +1,6 @@
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { format } from "date-fns";
 import React, { useContext } from "react";
 import { toast } from "react-toastify";
 import styled from "styled-components";
@@ -54,12 +55,7 @@ const BudgetOperations = () => {
     }
 
     //return if no value
-    if (
-      expense === null ||
-      expense === "" ||
-      amount === null ||
-      amount === 0
-    ) {
+    if (expense === null || expense === "" || amount === null || amount === 0) {
       return toast.warning("Formu Eksiksiz Doldurunuz.", {
         theme: "colored",
       });
@@ -69,7 +65,9 @@ const BudgetOperations = () => {
     let output = {
       expense,
       amount,
-      selectedDate: selectedDate ? selectedDate : startDate,
+      selectedDate: selectedDate
+        ? selectedDate
+        : format(startDate, "dd/MM/yyyy"),
     };
     setExpenseList([...expenseList, output]);
     toast.success(`${expense} giderlere eklendi.`, {
@@ -81,12 +79,12 @@ const BudgetOperations = () => {
     <Box>
       <h4>Simplified Budget</h4>
       <BudgetContainer>
-        <InputGroup labelText="Budget Amount" incomeInput />
+        <InputGroup labelText="Budget Amount" name="budgetAmount" />
       </BudgetContainer>
       <ExpenseContainer>
-        <InputGroup labelText="expense" expense />
-        <InputGroup labelText="amount" />
-        <InputGroup labelText="date" date />
+        <InputGroup labelText="Expense" name="expense" />
+        <InputGroup labelText="Amount" name="amount" />
+        <InputGroup labelText="Date" date />
         <AddButton onClick={formSubmit}>
           <FontAwesomeIcon icon={faPlus} color="#51F129" size="2x" />
         </AddButton>
