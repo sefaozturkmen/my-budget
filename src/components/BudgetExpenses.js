@@ -34,6 +34,9 @@ const ExpenseList = styled.div`
   }
 `;
 
+const EmptyExpenseList = styled.div`
+  font-size: 16px;
+`;
 const BudgetExpenses = () => {
   const { expenseList, setExpenseList } = useContext(GlobalContext);
 
@@ -48,13 +51,18 @@ const BudgetExpenses = () => {
       theme: "colored",
     });
   };
+  
   return (
     <Box>
       <h4>Expenses</h4>
       <ExpenseList>
-        {expenseList.map((expense, i) => (
-          <ExpenseItem expense={expense} handleDelete={deleteItem} key={i} />
-        ))}
+        {expenseList.length > 0 ? (
+          expenseList.map((expense, i) => (
+            <ExpenseItem expense={expense} handleDelete={deleteItem} key={i} />
+          ))
+        ) : (
+          <EmptyExpenseList>Please enter an expense</EmptyExpenseList>
+        )}
       </ExpenseList>
     </Box>
   );
