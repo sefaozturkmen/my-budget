@@ -2,11 +2,14 @@ import { Route, Routes } from "react-router";
 import Header from "./components/Header";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+import React, { useState } from "react";
+import { GlobalContext } from "./context/context";
+import { ToastContainer, Zoom } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import Expenses from "./pages/Expenses";
 import Main from "./pages/Main";
 import Statistics from "./pages/Statistics";
-import { GlobalContext } from "./context/context";
-import { useState } from "react";
 
 function App() {
   const [income, setIncome] = useState(0);
@@ -40,6 +43,11 @@ function App() {
           <Route exact path="/statistics" element={<Statistics />} />
           <Route exact path="/expenses" element={<Expenses />} />
         </Routes>
+        <ToastContainer
+          transition={Zoom}
+          autoClose={3000}
+          pauseOnHover={false}
+        />
       </div>
     </GlobalContext.Provider>
   );

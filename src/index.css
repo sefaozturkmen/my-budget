@@ -12,3 +12,7 @@ a {
 #app {
   position: relative;
 }
+
+.toast:not(.show) {
+  display: flex !important;
+}

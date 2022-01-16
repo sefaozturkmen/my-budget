@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { toast } from "react-toastify";
 import styled from "styled-components";
 import { GlobalContext } from "../context/context";
 
@@ -43,6 +44,9 @@ const BudgetExpenses = () => {
     );
     expenseList.splice(selectedItem, 1);
     setExpenseList([...expenseList]);
+    toast.warning(`${item.expense} silindi.`, {
+      theme: "colored",
+    });
   };
   return (
     <Box>

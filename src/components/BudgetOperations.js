@@ -1,6 +1,7 @@
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useContext } from "react";
+import { toast } from "react-toastify";
 import styled from "styled-components";
 import { GlobalContext } from "../context/context";
 
@@ -47,7 +48,9 @@ const BudgetOperations = () => {
   const formSubmit = () => {
     //return if income has no value
     if (income === 0 || income === "") {
-      return alert("please enter a budget value");
+      return toast.warning("Bütçe Giriniz.", {
+        theme: "colored",
+      });
     }
 
     //return if no value
@@ -55,9 +58,11 @@ const BudgetOperations = () => {
       expense === null ||
       expense === "" ||
       amount === null ||
-      amount === ""
+      amount === 0
     ) {
-      return alert("formu doldur");
+      return toast.warning("Formu Eksiksiz Doldurunuz.", {
+        theme: "colored",
+      });
     }
 
     //set output to expenseList
@@ -67,6 +72,9 @@ const BudgetOperations = () => {
       selectedDate: selectedDate ? selectedDate : startDate,
     };
     setExpenseList([...expenseList, output]);
+    toast.success(`${expense} giderlere eklendi.`, {
+      theme: "colored",
+    });
   };
 
   return (
