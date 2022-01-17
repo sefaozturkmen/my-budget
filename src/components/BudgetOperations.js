@@ -43,6 +43,9 @@ const BudgetOperations = () => {
     amount,
     startDate,
     income,
+    expenseId,
+    setExpenseId,
+    sortDate,
   } = useContext(GlobalContext);
 
   //get value from form
@@ -60,16 +63,19 @@ const BudgetOperations = () => {
         theme: "colored",
       });
     }
-
     //set output to expenseList
     let output = {
+      expenseId,
       expense,
       amount,
       selectedDate: selectedDate
         ? selectedDate
         : format(startDate, "dd/MM/yyyy"),
+      sortDate,
     };
+
     setExpenseList([...expenseList, output]);
+    setExpenseId(expenseId + 1);
     toast.success(`${expense} giderlere eklendi.`, {
       theme: "colored",
     });

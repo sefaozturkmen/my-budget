@@ -18,6 +18,8 @@ function App() {
   const [expense, setExpense] = useState(null);
   const [amount, setAmount] = useState(0);
   const [selectedDate, setSelectedDate] = useState(null);
+  const [sortDate, setSortDate] = useState(null);
+  const [expenseId, setExpenseId] = useState(1);
 
   const data = {
     income,
@@ -32,6 +34,10 @@ function App() {
     setAmount,
     startDate,
     setStartDate,
+    expenseId,
+    setExpenseId,
+    sortDate,
+    setSortDate,
   };
 
   return (

@@ -53,13 +53,16 @@ const InputGroup = ({ labelText, date, name, ...props }) => {
     amount,
     expense,
     income,
+    setSortDate,
   } = useContext(GlobalContext);
 
   //set date from datepicker
   const selectDate = (date) => {
     const dateFormat = format(date, "dd/MM/yyyy");
+    const sortFormat = Number(format(date, "yyyy/MM/dd").replaceAll("/", ""));
     setStartDate(date);
     setSelectedDate(dateFormat);
+    setSortDate(sortFormat);
   };
 
   //set value by type from inputs
