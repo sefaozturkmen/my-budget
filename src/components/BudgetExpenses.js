@@ -14,6 +14,10 @@ const Box = styled.div`
   h4 {
     color: #51f129;
   }
+  @media (max-width: 576px) {
+    padding: 48px 16px;
+    height: auto;
+  }
 `;
 
 const ExpenseList = styled.div`
@@ -51,7 +55,7 @@ const BudgetExpenses = () => {
       theme: "colored",
     });
   };
-  
+
   return (
     <Box>
       <h4>Expenses</h4>

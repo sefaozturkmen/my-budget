@@ -8,6 +8,10 @@ const ResultContainer = styled.div`
   padding: 0 80px;
   justify-content: space-between;
   align-items: center;
+  @media (max-width: 576px) {
+    padding: 0 16px;
+    height: 100px;
+  }
 `;
 
 const ResultItem = styled.div`
@@ -32,6 +36,9 @@ const Amount = styled.div`
   font-size: 48px;
   font-weight: 700;
   line-height: 1;
+  @media (max-width: 576px) {
+    font-size: 24px;
+  }
 `;
 const Result = () => {
   const { income, expenseList } = useContext(GlobalContext);

@@ -18,14 +18,26 @@ const Box = styled.div`
     font-size: 32px;
     margin-bottom: 24px;
   }
+  @media (max-width: 576px) {
+    padding: 72px 16px 48px;
+    height: auto;
+  }
 `;
 const BudgetContainer = styled.div`
   margin-bottom: 100px;
+  @media (max-width: 576px) {
+    margin-bottom: 32px;
+
+  }
 `;
 const ExpenseContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 27%) auto;
   column-gap: 16px;
+  @media (max-width: 576px) {
+    grid-template-columns: repeat(2, 2fr);
+    row-gap: 16px;
+  }
 `;
 
 const AddButton = styled.button`

@@ -8,6 +8,10 @@ const ExpensesContainer = styled.div`
   height: 100vh;
   background-color: #000;
   padding: 80px;
+  @media (max-width: 576px) {
+    padding: 72px 16px 48px;
+    height: auto;
+  }
 `;
 
 const ExpenseTableContainer = styled.div`
@@ -16,6 +20,9 @@ const ExpenseTableContainer = styled.div`
   padding: 36px 48px;
   background-color: #fff;
   overflow: auto;
+  @media (max-width: 576px) {
+    padding: 0 8px;
+  }
   &::-webkit-scrollbar-track {
     background: transparent;
   }

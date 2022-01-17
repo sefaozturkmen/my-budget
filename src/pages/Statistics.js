@@ -30,6 +30,10 @@ const StatisticsContainer = styled.div`
   canvas {
     background-color: #fff;
   }
+  @media (max-width: 576px) {
+    padding: 48px 16px;
+    height: 100vh;
+  }
 `;
 
 const EmptyList = styled.div`
