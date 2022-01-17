@@ -54,8 +54,6 @@ const BudgetExpenses = () => {
     toast.warning(`${item.expense} silindi.`, {
       theme: "colored",
     });
-    localStorage.setItem('expenseList', JSON.stringify(expenseList));
-
   };
 
   return (

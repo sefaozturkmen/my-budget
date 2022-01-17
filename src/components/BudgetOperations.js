@@ -87,7 +87,6 @@ const BudgetOperations = () => {
     };
 
     setExpenseList([...expenseList, output]);
-    localStorage.setItem('expenseList', JSON.stringify(expenseList));
     setExpenseId(expenseId + 1);
     toast.success(`${expense} giderlere eklendi.`, {
       theme: "colored",
