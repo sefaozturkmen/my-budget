@@ -10,7 +10,6 @@ const ExpensesContainer = styled.div`
   padding: 80px;
   @media (max-width: 576px) {
     padding: 72px 16px 48px;
-    height: auto;
   }
 `;
 
@@ -84,6 +83,12 @@ const ExpenseTableBodyTr = styled.tr`
 const ArrowContainer = styled.div`
   display: flex;
   flex-direction: column;
+`;
+
+const EmptyExpense = styled.div`
+  font-size: 48px;
+  text-align: center;
+  color: #fff;
 `;
 const tableList = [
   { name: "id", label: "ID" },
@@ -172,69 +177,73 @@ const Expenses = () => {
   return (
     <div>
       <ExpensesContainer>
-        <ExpenseTableContainer>
-          <ExpenseTable>
-            <ExpenseTableHead>
-              <ExpenseTableTr>
-                {tableList.map((item) => (
-                  <ExpenseTableTh onClick={() => sortByName(item)}>
-                    <ExpenseTableThWrapper onClick={() => colorArrow(item)}>
-                      <span>{item.label}</span>
-                      {isSort !== item.name ? (
-                        <ArrowContainer>
-                          <FontAwesomeIcon
-                            icon={faArrowUp}
-                            color="rgba(8, 66, 152, 0.3)"
-                          />
-                          <FontAwesomeIcon
-                            icon={faArrowDown}
-                            color="rgba(8, 66, 152, 0.3)"
-                          />
-                        </ArrowContainer>
-                      ) : (
-                        <>
-                          {secondSort ? (
-                            <ArrowContainer>
-                              <FontAwesomeIcon
-                                icon={faArrowUp}
-                                color="rgba(8, 66, 152, 1)"
-                              />
-                              <FontAwesomeIcon
-                                icon={faArrowDown}
-                                color="rgba(8, 66, 152, 0.3)"
-                              />
-                            </ArrowContainer>
-                          ) : (
-                            <ArrowContainer>
-                              <FontAwesomeIcon
-                                icon={faArrowUp}
-                                color="rgba(8, 66, 152, 0.3)"
-                              />
-                              <FontAwesomeIcon
-                                icon={faArrowDown}
-                                color="rgba(8, 66, 152, 1)"
-                              />
-                            </ArrowContainer>
-                          )}
-                        </>
-                      )}
-                    </ExpenseTableThWrapper>
-                  </ExpenseTableTh>
+        {expenseList.length > 0 ? (
+          <ExpenseTableContainer>
+            <ExpenseTable>
+              <ExpenseTableHead>
+                <ExpenseTableTr>
+                  {tableList.map((item) => (
+                    <ExpenseTableTh onClick={() => sortByName(item)}>
+                      <ExpenseTableThWrapper onClick={() => colorArrow(item)}>
+                        <span>{item.label}</span>
+                        {isSort !== item.name ? (
+                          <ArrowContainer>
+                            <FontAwesomeIcon
+                              icon={faArrowUp}
+                              color="rgba(8, 66, 152, 0.3)"
+                            />
+                            <FontAwesomeIcon
+                              icon={faArrowDown}
+                              color="rgba(8, 66, 152, 0.3)"
+                            />
+                          </ArrowContainer>
+                        ) : (
+                          <>
+                            {secondSort ? (
+                              <ArrowContainer>
+                                <FontAwesomeIcon
+                                  icon={faArrowUp}
+                                  color="rgba(8, 66, 152, 1)"
+                                />
+                                <FontAwesomeIcon
+                                  icon={faArrowDown}
+                                  color="rgba(8, 66, 152, 0.3)"
+                                />
+                              </ArrowContainer>
+                            ) : (
+                              <ArrowContainer>
+                                <FontAwesomeIcon
+                                  icon={faArrowUp}
+                                  color="rgba(8, 66, 152, 0.3)"
+                                />
+                                <FontAwesomeIcon
+                                  icon={faArrowDown}
+                                  color="rgba(8, 66, 152, 1)"
+                                />
+                              </ArrowContainer>
+                            )}
+                          </>
+                        )}
+                      </ExpenseTableThWrapper>
+                    </ExpenseTableTh>
+                  ))}
+                </ExpenseTableTr>
+              </ExpenseTableHead>
+              <ExpenseTableBody>
+                {expenseList.map((expense) => (
+                  <ExpenseTableBodyTr key={expense.expenseId}>
+                    <ExpenseTd>{expense.expenseId}</ExpenseTd>
+                    <ExpenseTdColored>{expense.expense}</ExpenseTdColored>
+                    <ExpenseTd>{expense.amount}</ExpenseTd>
+                    <ExpenseTd>{expense.selectedDate}</ExpenseTd>
+                  </ExpenseTableBodyTr>
                 ))}
-              </ExpenseTableTr>
-            </ExpenseTableHead>
-            <ExpenseTableBody>
-              {expenseList.map((expense) => (
-                <ExpenseTableBodyTr key={expense.expenseId}>
-                  <ExpenseTd>{expense.expenseId}</ExpenseTd>
-                  <ExpenseTdColored>{expense.expense}</ExpenseTdColored>
-                  <ExpenseTd>{expense.amount}</ExpenseTd>
-                  <ExpenseTd>{expense.selectedDate}</ExpenseTd>
-                </ExpenseTableBodyTr>
-              ))}
-            </ExpenseTableBody>
-          </ExpenseTable>
-        </ExpenseTableContainer>
+              </ExpenseTableBody>
+            </ExpenseTable>
+          </ExpenseTableContainer>
+        ) : (
+          <EmptyExpense>Please Enter an Expense</EmptyExpense>
+        )}
       </ExpensesContainer>
     </div>
   );

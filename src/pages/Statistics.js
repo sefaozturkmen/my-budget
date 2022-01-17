@@ -32,7 +32,6 @@ const StatisticsContainer = styled.div`
   }
   @media (max-width: 576px) {
     padding: 48px 16px;
-    height: 100vh;
   }
 `;
 
@@ -77,7 +76,7 @@ const Statistics = () => {
       {expenseList.length > 0 ? (
         <Line data={data} height={600} options={options} />
       ) : (
-        <EmptyList>Please Enter a Expense!</EmptyList>
+        <EmptyList>Please Enter an Expense!</EmptyList>
       )}
     </StatisticsContainer>
   );
