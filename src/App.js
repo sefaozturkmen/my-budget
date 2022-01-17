@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router";
 import Header from "./components/Header";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { GlobalContext } from "./context/context";
 import { ToastContainer, Zoom } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -39,7 +39,10 @@ function App() {
     sortDate,
     setSortDate,
   };
-
+  useEffect(() => {
+    const expenseListLS = JSON.parse(localStorage.getItem("expenseList"));
+    setExpenseList(expenseListLS);
+  }, []);
   return (
     <GlobalContext.Provider value={data}>
       <div id="app">
