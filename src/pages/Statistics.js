@@ -53,7 +53,7 @@ const Statistics = () => {
         label: "Amount",
         data: amountList,
 
-        borderColor: ["rgba(255, 99, 132, 1)"],
+        borderColor: ["rgba(255, 99, 132, 2)"],
         borderWidth: 1,
       },
     ],
