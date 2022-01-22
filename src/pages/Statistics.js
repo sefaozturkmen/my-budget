@@ -23,6 +23,7 @@ ChartJS.register(
   Tooltip,
   Legend
 );
+
 const StatisticsContainer = styled.div`
   background-color: #000;
   height: 100vh;
