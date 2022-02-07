@@ -27,6 +27,7 @@ ChartJS.register(
 const StatisticsContainer = styled.div`
   background-color: #000;
   height: 100vh;
+  color:#fff;
   padding: 100px;
   canvas {
     background-color: #fff;
